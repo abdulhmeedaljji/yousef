@@ -1,0 +1,99 @@
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title> ان شاء حساب </title>
+
+
+    <style>
+      .navbar {
+        background-color: steelblue; 
+      }
+  
+    </style>
+</head>
+<body>
+
+
+  <nav class="navbar navbar-expand-lg " id="navbar" style="direction: rtl;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'Home' %}">يوسف </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'Home' %}">الرئسية</a>
+          </li>
+          
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+
+
+
+<div
+  class="bg-image p-5 text-center shadow-1-strong rounded mb-5 text-black"
+     style=" background-image: url('https://media.istockphoto.com/id/1276789753/photo/the-concept-of-a-program-for-translating-in-a-smartphone-from-different-languages.jpg?b=1&s=170667a&w=0&k=20&c=DPSLIjDYBAT9KYu6Mb6Rb9Gjd_gZPFfL7Ln8Z0RjjSU=');height: 100vh;  background-size: cover;">
+
+
+
+ 
+
+
+
+
+    <section>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 mx-auto">
+              <div class="card">
+                <div class="card-header text-black">
+                  <h2>انشاء حساب مترجم </h2>
+                </div>
+                <div class="card-body">
+                    <form action="{% url 'translate_register' %}" method="POST" novalidate>
+                      {% csrf_token %}
+                         {% for field in form.visible_fields %}
+                           <div class="form-group">
+
+                                  {% render_field field class="form-control" style="margin:10px;" %}
+                                    {% for error in field.errors %}
+
+                                       {% if error == "A user with that username already exists." %}
+
+                                        <span> اسم المترجم موجود بالفعل</span>
+                                       {% endif   %}
+
+                                      {% if error == "The two password fields didn’t match." %}
+
+                                         <span style="color:red">كلمة السر غير متطابقة</span>
+                                      {% endif   %}
+
+                                      {% if error == "Enter a valid username. This value may contain only letters, numbers, and @/./+/-/_ characters." %}
+                                         <span style="color:red"> لا يمكن ان يحتوي الاسم على فواصل   </span>
+                                      {% endif   %}
+
+<!--                                      <span style="color:red">{{ error }}</span>-->
+                                    {% endfor %}
+                         {% endfor %}
+                             <input type="submit" value="تسجيل حساب" class="btn btn-block btn-primary">
+                           </div>
+                    </form>
+                 </div>
+                    </div>   
+                </div>
+              </div>
+            </div>
+      </section>
+
+    </div>
+</body>
+</html>

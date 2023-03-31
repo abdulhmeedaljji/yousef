@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> رفع ترجمة</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
+    <style>
+      .navbar {
+        background-color: steelblue;
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg " id="navbar" style="direction: rtl;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'Home' %}">يوسف </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'Home' %}">الرئسية</a>
+          </li>
+
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+
+
+
+        <div class="container" style="padding-top:50px;">
+            <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">name </th>
+          <th scope="col">mosaqe </th>
+          <th scope="col">file </th>
+          <th scope="col">upload_translate </th>
+          <th scope="col">delete </th>
+
+        </tr>
+      </thead>
+      <tbody>
+          {% for pd in pdf_file %}
+
+            <tr>
+
+              <th scope="row">{{pd.id}}</th>
+              <td>{{pd.vedio.title}}</td>
+              <td>{{pd.vedio.mousaq}}</td>
+              <td><a href="{{pd.vedio.video.url}}" download><i class="bi bi-file-earmark-pdf"> </i> </a></td>
+              <td><a href="{% url 'uploadafter' id=pd.id  %}" upload translate=""><i class="bi bi-cloud-plus-fill"></i> </a></td>
+              <td><a href="{% url 'delete_translted' id=pd.id  %}" delete =""><i class="bi bi-journal-x"></i> </a></td>
+
+            </tr>
+         {% endfor %}
+
+
+
+
+      </tbody>
+    </table>
+
+
+
+
+
+        </div>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+
+
+<!--    {% for pd in pdf_file %}-->
+
+<!--            <a href="{{pd.vedio.video.url}}" download>{{pd.vedio.title}}</a>-->
+
+
+<!--        <h5> {{pd.vedio.video.url}} </h5>-->
+<!--        <h5> {{pd.states}} </h5>-->
+
+
+<!--    {% endfor  %}-->
+
+<!--</body>-->
+<!--</html>-->
